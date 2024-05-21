@@ -1,6 +1,9 @@
 package com.example.weatherapp.Activities.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +36,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
         initRecyclerview();
+
+        setVariable();
+
+    }
+
+    private void setVariable() {
+        TextView next7DayBtn = findViewById(R.id.nextBtn);
+        next7DayBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, TommorrowActivity.class));
+            }
+        });
     }
 
     private void initRecyclerview() {
