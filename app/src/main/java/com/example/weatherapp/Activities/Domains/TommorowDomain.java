@@ -1,6 +1,6 @@
 package com.example.weatherapp.Activities.Domains;
 
-public class TommorowDomain {
+public class TommorowDomain implements Weather{
     private String day;
     private String picPath;
     private String status;

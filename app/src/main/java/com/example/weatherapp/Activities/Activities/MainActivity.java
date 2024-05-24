@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.Activities.Adapter.HourlyAdapter;
 import com.example.weatherapp.Activities.Domains.Hourly;
+import com.example.weatherapp.Activities.Factory.DomainFactory;
 import com.example.weatherapp.R;
 
 import java.util.ArrayList;
@@ -53,11 +54,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void initRecyclerview() {
         ArrayList<Hourly> items = new ArrayList<>();
-        items.add(new Hourly("10 PM", 28, "cloudy"));
-        items.add(new Hourly("10 PM", 28, "cloudy"));
-        items.add(new Hourly("10 PM", 28, "cloudy"));
-        items.add(new Hourly("10 PM", 28, "cloudy"));
-        items.add(new Hourly("10 PM", 28, "cloudy"));
+        items.add((Hourly) DomainFactory.createDomain("Hourly", "10 PM", 28, "cloudy"));
+        items.add((Hourly) DomainFactory.createDomain("Hourly", "11 PM", 29, "sunny"));
+        items.add((Hourly) DomainFactory.createDomain("Hourly", "12 PM", 30, "wind"));
+        items.add((Hourly) DomainFactory.createDomain("Hourly", "01 AM", 29, "rainy"));
+        items.add((Hourly) DomainFactory.createDomain("Hourly", "02 AM", 27, "storm"));
 
         recyclerView = findViewById(R.id.view1);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));

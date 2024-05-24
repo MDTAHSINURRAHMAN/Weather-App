@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.Activities.Adapter.TommorowAdapter;
 import com.example.weatherapp.Activities.Domains.TommorowDomain;
+import com.example.weatherapp.Activities.Factory.DomainFactory;
 import com.example.weatherapp.R;
 
 import java.util.ArrayList;
@@ -50,12 +51,12 @@ public class TommorrowActivity extends AppCompatActivity {
 
     private void initRecyclerView() {
         ArrayList<TommorowDomain> items = new ArrayList<>();
-        items.add(new TommorowDomain( "Sat", "storm", "Storm", 25, 10));
-        items.add(new TommorowDomain( "Sat", "storm", "Storm", 25, 10));
-        items.add(new TommorowDomain( "Sat", "storm", "Storm", 25, 10));
-        items.add(new TommorowDomain( "Sat", "storm", "Storm", 25, 10));
-        items.add(new TommorowDomain( "Sat", "storm", "Storm", 25, 10));
-
+        items.add((TommorowDomain) DomainFactory.createDomain("Tommorow", "Sat", "storm", "Storm", 25, 10));
+        items.add((TommorowDomain) DomainFactory.createDomain("Tommorow", "Sun", "cloudy", "Rainy_Sunny", 25, 10));
+        items.add((TommorowDomain) DomainFactory.createDomain("Tommorow", "Mon", "cloudy_3", "Cloudy", 25, 10));
+        items.add((TommorowDomain) DomainFactory.createDomain("Tommorow", "Tue", "cloudy_sunny", "Cloudy_Sunny", 25, 10));
+        items.add((TommorowDomain) DomainFactory.createDomain("Tommorow", "Wed", "sun", "Sunny", 25, 10));
+        items.add((TommorowDomain) DomainFactory.createDomain("Tommorow", "Thu", "rainy", "Rainy", 25, 10));
 
         recyclerView = findViewById(R.id.view2);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));

@@ -2,7 +2,7 @@ package com.example.weatherapp.Activities.Domains;
 
 import kotlin.text.UStringsKt;
 
-public class Hourly {
+public class Hourly implements Weather{
     private String Hour;
     private int temp;
     private String picPath;
