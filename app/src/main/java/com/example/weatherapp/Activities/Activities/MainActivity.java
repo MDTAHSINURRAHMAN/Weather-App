@@ -109,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
 
                     String highLowText = "H: " + highTemperature + "\u00B0C" + " " + " L: " + lowTemperature + "\u00B0C";
 
-
                     // Update the UI with the parsed data
                     tempTodayText.setText(String.valueOf(temperature));
                     humidityTxt.setText(String.valueOf(humidity * 100));
