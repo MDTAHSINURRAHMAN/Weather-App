@@ -30,8 +30,12 @@ public class WeatherApiClient {
     }
 
     public String fetchWeatherData(String c) {
-//        String apiKey = context.getString(R.string.weather_api_key);
-        String url = "http://192.168.0.110:3000/weather/" + c;
+        String apiKey = context.getString(R.string.weather_api_key);
+        String lat = context.getString(R.string.lat);
+        String lon = context.getString(R.string.lon);
+
+//        String url = "https://api.openweathermap.org/data/3.0/onecall?lat="+ lat +"&lon=" + lon +"&units=metric&lang=en&appid="+apiKey;
+        String url = "https://weatherserviceapi.onrender.com/weather/" + c;
         Request request = new Request.Builder()
                 .url(url)
                 .build();
