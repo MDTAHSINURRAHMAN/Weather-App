@@ -29,9 +29,9 @@ public class WeatherApiClient {
         return instance;
     }
 
-    public String fetchWeatherData(String city) {
+    public String fetchWeatherData(String c) {
 //        String apiKey = context.getString(R.string.weather_api_key);
-        String url = "http://192.168.31.67:3000/weather/" + city;
+        String url = "http://192.168.0.110:3000/weather/" + c;
         Request request = new Request.Builder()
                 .url(url)
                 .build();

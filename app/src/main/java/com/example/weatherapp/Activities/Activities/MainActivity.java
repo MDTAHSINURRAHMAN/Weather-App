@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapterHourly;
     private RecyclerView recyclerView;
     private WeatherApiClient weatherApiClient;
-    private TextView windTxt, humidityTxt, tempTodayText;
+    private TextView windTxt, humidityTxt, tempTodayText, rainTxt, statusTxt, highLowTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
         windTxt = findViewById(R.id.windSpeedText);
         humidityTxt = findViewById(R.id.humidityText);
         tempTodayText = findViewById(R.id.tempTodayText);
+        rainTxt = findViewById(R.id.rainProbabilityText);
+        statusTxt = findViewById(R.id.statusTodayText);
+        highLowTxt = findViewById(R.id.highLowText);
 
         initRecyclerview();
         setVariable();
@@ -99,11 +102,22 @@ public class MainActivity extends AppCompatActivity {
                     double temperature = jsonObject.getDouble("temperature");
                     double humidity = jsonObject.getDouble("humidity");
                     double windSpeed = jsonObject.getDouble("windSpeed");
+                    String str = jsonObject.getString("status");
+                    double rainProbability = jsonObject.getDouble("probabilityOfRain");
+                    double highTemperature = jsonObject.getDouble("highestTemperature");
+                    double lowTemperature = jsonObject.getDouble("lowestTemperature");
+
+                    String highLowText = "H: " + highTemperature + "\u00B0C" + " " + " L: " + lowTemperature + "\u00B0C";
+
 
                     // Update the UI with the parsed data
                     tempTodayText.setText(String.valueOf(temperature));
                     humidityTxt.setText(String.valueOf(humidity * 100));
                     windTxt.setText(String.valueOf(windSpeed));
+                    rainTxt.setText(String.valueOf(rainProbability*100));
+                    statusTxt.setText(str);
+                    highLowTxt.setText(highLowText);
+
 
                     // Parse the hourly forecast array
                     JSONArray hourlyForecastArray = jsonObject.getJSONArray("hourlyForecast");

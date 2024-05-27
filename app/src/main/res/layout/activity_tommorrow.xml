@@ -77,7 +77,7 @@
                                 android:textSize="20sp" />
 
                             <TextView
-                                android:id="@+id/textView4"
+                                android:id="@+id/tomorrowTempText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
@@ -87,7 +87,7 @@
                                 android:textSize="43sp" />
 
                             <TextView
-                                android:id="@+id/textView5"
+                                android:id="@+id/tomorrowTempStatus"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Mostly Cloudy"
@@ -117,7 +117,7 @@
                                 app:srcCompat="@drawable/umbrella" />
 
                             <TextView
-                                android:id="@+id/textView"
+                                android:id="@+id/tomorrowRainProb"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="22%"
@@ -151,7 +151,7 @@
                                 app:srcCompat="@drawable/wind" />
 
                             <TextView
-                                android:id="@+id/textView10"
+                                android:id="@+id/tomorrowWindSpeed"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="12 km"
@@ -185,7 +185,7 @@
                                 app:srcCompat="@drawable/humidity" />
 
                             <TextView
-                                android:id="@+id/textView6"
+                                android:id="@+id/tomorrowHumidity"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="22%"
