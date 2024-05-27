@@ -1,34 +1,33 @@
 package com.example.weatherapp.Activities.Domains;
 
-import kotlin.text.UStringsKt;
-
-public class Hourly implements Weather{
-    private String Hour;
-    private int temp;
+public class Hourly implements Weather {
+    private String hour;
+    private double temp;
     private String picPath;
 
-    public Hourly(String hour, int temp, String picPath) {
-        Hour = hour;
+    public Hourly(String hour, double temp, String picPath) {
+        this.hour = hour;
         this.temp = temp;
         this.picPath = picPath;
     }
 
     public String getHour() {
-        return Hour;
+        return hour;
     }
 
     public void setHour(String hour) {
-        Hour = hour;
+        this.hour = hour;
     }
 
-    public int getTemp() {
+    public double getTemp() {
         return temp;
     }
 
-    public void setTemp(int temp) {
+    public void setTemp(double temp) {
         this.temp = temp;
     }
 
+    @Override
     public String getPicPath() {
         return picPath;
     }

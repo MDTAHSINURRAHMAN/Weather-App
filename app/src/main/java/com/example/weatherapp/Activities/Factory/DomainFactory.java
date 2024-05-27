@@ -6,11 +6,11 @@ import com.example.weatherapp.Activities.Domains.TommorowDomain;
 public class DomainFactory {
     public static Object createDomain(String type, Object... args) {
         if (type.equalsIgnoreCase("Hourly")) {
-            if (args.length != 3 || !(args[0] instanceof String) || !(args[1] instanceof Integer) || !(args[2] instanceof String)) {
+            if (args.length != 3 || !(args[0] instanceof String) || !(args[1] instanceof Double) || !(args[2] instanceof String)) {
                 throw new IllegalArgumentException("Invalid arguments for Hourly domain creation");
             }
             String hour = (String) args[0];
-            int temp = (Integer) args[1];
+            double temp = (Double) args[1];
             String picPath = (String) args[2];
             return new Hourly(hour, temp, picPath);
         } else if (type.equalsIgnoreCase("Tommorow")) {
