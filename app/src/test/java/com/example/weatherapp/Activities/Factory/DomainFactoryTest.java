@@ -1,11 +1,10 @@
 package com.example.weatherapp.Activities.Factory;
 
+import static org.junit.Assert.assertTrue;
+
 import com.example.weatherapp.Activities.Domains.Hourly;
-import com.example.weatherapp.Activities.Domains.TommorowDomain;
-import com.example.weatherapp.Activities.Factory.DomainFactory;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 public class DomainFactoryTest {
 

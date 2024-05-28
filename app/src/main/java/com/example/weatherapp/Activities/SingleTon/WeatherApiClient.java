@@ -17,7 +17,7 @@ public class WeatherApiClient {
     private final OkHttpClient client;
     private final Context context;
 
-    private WeatherApiClient(Context context) {
+    WeatherApiClient(Context context) {
         this.context = context.getApplicationContext(); // Prevent memory leaks
         client = new OkHttpClient.Builder().build();
     }
