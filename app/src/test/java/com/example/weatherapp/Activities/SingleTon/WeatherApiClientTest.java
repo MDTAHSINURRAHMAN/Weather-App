@@ -10,6 +10,9 @@ import junit.framework.TestCase;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+/**
+ * Unit tests for the WeatherApiClient class.
+ */
 public class WeatherApiClientTest extends TestCase {
 
     @Mock
@@ -20,6 +23,9 @@ public class WeatherApiClientTest extends TestCase {
 
     private WeatherApiClient weatherApiClient;
 
+    /**
+     * Set up method to initialize mocks and create an instance of WeatherApiClient.
+     */
     @Override
     protected void setUp() throws Exception {
         super.setUp();
@@ -29,10 +35,12 @@ public class WeatherApiClientTest extends TestCase {
         weatherApiClient = WeatherApiClient.getInstance(mockContext);
     }
 
+    /**
+     * Test case for getInstance method to ensure singleton behavior.
+     */
     public void testGetInstance() {
         assertNotNull(weatherApiClient);
         WeatherApiClient secondInstance = WeatherApiClient.getInstance(mockContext);
         assertSame(weatherApiClient, secondInstance);
     }
-
 }
