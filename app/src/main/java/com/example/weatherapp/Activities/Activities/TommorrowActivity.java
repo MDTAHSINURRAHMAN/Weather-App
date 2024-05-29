@@ -15,9 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.weatherapp.Activities.Adapter.HourlyAdapter;
 import com.example.weatherapp.Activities.Adapter.TommorowAdapter;
-import com.example.weatherapp.Activities.Domains.Hourly;
 import com.example.weatherapp.Activities.Domains.TommorowDomain;
 import com.example.weatherapp.Activities.Factory.DomainFactory;
 import com.example.weatherapp.Activities.SingleTon.WeatherApiClient;
@@ -87,15 +85,15 @@ public class TommorrowActivity extends AppCompatActivity {
     }
 
 
-    private void fetchWeatherData(String city) {
-        new FetchWeatherTask().execute(city);
+    private void fetchWeatherData(String c) {
+        new FetchWeatherTask().execute(c);
     }
 
     private class FetchWeatherTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
-            String city = params[0];
-            return weatherApiClient.fetchWeatherData(city);
+            String c = params[0];
+            return weatherApiClient.fetchWeatherData(c);
         }
 
         @Override

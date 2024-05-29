@@ -93,15 +93,15 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapterHourly);
     }
 
-    private void fetchWeatherData(String city) {
-        new FetchWeatherTask().execute(city);
+    private void fetchWeatherData(String c) {
+        new FetchWeatherTask().execute(c);
     }
 
     private class FetchWeatherTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
-            String city = params[0];
-            return weatherApiClient.fetchWeatherData(city);
+            String c = params[0];
+            return weatherApiClient.fetchWeatherData(c);
         }
 
         @Override
