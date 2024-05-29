@@ -17,15 +17,31 @@ import com.example.weatherapp.R;
 
 import java.util.ArrayList;
 
+/**
+ * Adapter class for displaying tomorrow's weather data in a RecyclerView.
+ */
 public class TommorowAdapter extends RecyclerView.Adapter<TommorowAdapter.ViewHolder> {
     private ArrayList<TommorowDomain> items;
     private Context context;
 
+    /**
+     * Constructor for TommorowAdapter.
+     *
+     * @param context the context for resource access and view inflation
+     * @param items   the list of tomorrow's weather data
+     */
     public TommorowAdapter(Context context, ArrayList<TommorowDomain> items) {
         this.context = context;
         this.items = items;
     }
 
+    /**
+     * Creates a new ViewHolder for the RecyclerView.
+     *
+     * @param parent   the parent ViewGroup into which the new view will be added
+     * @param viewType the view type of the new view
+     * @return a new ViewHolder instance
+     */
     @NonNull
     @Override
     public TommorowAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -33,6 +49,12 @@ public class TommorowAdapter extends RecyclerView.Adapter<TommorowAdapter.ViewHo
         return new ViewHolder(inflate);
     }
 
+    /**
+     * Binds the data to the views in the ViewHolder for the specified position.
+     *
+     * @param holder   the ViewHolder that should be updated
+     * @param position the position of the item within the adapter's data set
+     */
     @Override
     public void onBindViewHolder(@NonNull TommorowAdapter.ViewHolder holder, int position) {
         TommorowDomain item = items.get(position);
@@ -52,16 +74,31 @@ public class TommorowAdapter extends RecyclerView.Adapter<TommorowAdapter.ViewHo
             e.printStackTrace();
         }
     }
+
+    /**
+     * Returns the total number of items in the data set held by the adapter.
+     *
+     * @return the total number of items
+     */
     @Override
     public int getItemCount() {
         return items != null ? items.size() : 0;
     }
+
+    /**
+     * ViewHolder class for holding the views for each tomorrow weather item.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView dayTxt, statusTxt, lowTxt, highTxt;
         ImageView pic;
+
+        /**
+         * Constructor for ViewHolder.
+         *
+         * @param itemView the view of the item
+         */
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             dayTxt = itemView.findViewById(R.id.dayTxt);
             statusTxt = itemView.findViewById(R.id.statusTxt);
             lowTxt = itemView.findViewById(R.id.lowTxt);
