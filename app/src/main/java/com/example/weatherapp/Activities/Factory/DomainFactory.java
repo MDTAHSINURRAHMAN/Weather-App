@@ -3,8 +3,20 @@ package com.example.weatherapp.Activities.Factory;
 import com.example.weatherapp.Activities.Domains.Hourly;
 import com.example.weatherapp.Activities.Domains.TommorowDomain;
 
+/**
+ * A factory class for creating domain objects based on the specified type.
+ */
 public class DomainFactory {
-    public static Object createDomain(String type, Object... args) {
+
+    /**
+     * Creates a domain object based on the specified type and arguments.
+     *
+     * @param type the type of domain to create ("Hourly" or "Tommorow")
+     * @param args the arguments required to create the domain object
+     * @return a domain object of the specified type
+     * @throws IllegalArgumentException if the specified type is invalid or if the arguments are invalid for creating the domain object
+     */
+    public static Object createDomain(String type, Object... args) throws IllegalArgumentException {
         if (type.equalsIgnoreCase("Hourly")) {
             if (args.length != 3 || !(args[0] instanceof String) || !(args[1] instanceof Double) || !(args[2] instanceof String)) {
                 throw new IllegalArgumentException("Invalid arguments for Hourly domain creation");
