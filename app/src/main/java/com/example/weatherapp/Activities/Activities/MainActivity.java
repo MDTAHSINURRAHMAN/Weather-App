@@ -33,6 +33,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+/**
+ * The main activity displaying weather information and hourly forecast.
+ */
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity"; // Define TAG constant
     private RecyclerView.Adapter adapterHourly;
@@ -41,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView windTxt, humidityTxt, tempTodayText, rainTxt, statusTxt, highLowTxt;
 
     private LocationManager locationManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +71,34 @@ public class MainActivity extends AppCompatActivity {
 
         checkLocationPermission();
 
-
         // Fetch weather data
         fetchWeatherData("today");
     }
 
+    /**
+     * Initializes the RecyclerView for displaying hourly forecast.
+     */
+    private void initRecyclerview() {
+        recyclerView = findViewById(R.id.view1);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        // Initialize with empty data until fetched
+        adapterHourly = new HourlyAdapter(this, new ArrayList<>());
+        recyclerView.setAdapter(adapterHourly);
+    }
+
+    /**
+     * Fetches weather data from the API.
+     *
+     * @param c the city for which weather data is requested
+     */
+    private void fetchWeatherData(String c) {
+        new FetchWeatherTask().execute(c);
+    }
+
+    /**
+     * Sets click listener for the "Next 7 Days" button.
+     */
     private void setVariable() {
         TextView next7DayBtn = findViewById(R.id.nextBtn);
         next7DayBtn.setOnClickListener(new View.OnClickListener() {
@@ -84,19 +109,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void initRecyclerview() {
-        recyclerView = findViewById(R.id.view1);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
-        // Initialize with empty data until fetched
-        adapterHourly = new HourlyAdapter(this, new ArrayList<>());
-        recyclerView.setAdapter(adapterHourly);
-    }
-
-    private void fetchWeatherData(String c) {
-        new FetchWeatherTask().execute(c);
-    }
-
+    /**
+     * AsyncTask to fetch weather data from the API in the background.
+     */
     private class FetchWeatherTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
@@ -126,10 +141,9 @@ public class MainActivity extends AppCompatActivity {
                     tempTodayText.setText(String.valueOf(temperature));
                     humidityTxt.setText(String.valueOf(humidity * 100));
                     windTxt.setText(String.valueOf(windSpeed));
-                    rainTxt.setText(String.valueOf(rainProbability*100));
+                    rainTxt.setText(String.valueOf(rainProbability * 100));
                     statusTxt.setText(str);
                     highLowTxt.setText(highLowText);
-
 
                     // Parse the hourly forecast array
                     JSONArray hourlyForecastArray = jsonObject.getJSONArray("hourlyForecast");
@@ -157,29 +171,33 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+/**
+ * Checks if the app has location permission.
+*/
+ private void checkLocationPermission() {
+ if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+ ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+ } else {
+ displayLastKnownLocation();
+ }
+ }
 
-
-    private void checkLocationPermission() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-        } else {
-            displayLastKnownLocation();
-        }
-    }
-
-    private void displayLastKnownLocation() {
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (locationManager != null) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                if (lastKnownLocation != null) {
-                    double latitude = lastKnownLocation.getLatitude();
-                    double longitude = lastKnownLocation.getLongitude();
-                    String latLongMsg = "Latitude: " + latitude + ", Longitude: " + longitude;
-                    Toast.makeText(this, latLongMsg, Toast.LENGTH_SHORT).show();
-                }
+ /**
+ * Displays the last known location of the device.
+ */
+private void displayLastKnownLocation() {
+    locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+    if (locationManager != null) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            if (lastKnownLocation != null) {
+                double latitude = lastKnownLocation.getLatitude();
+                double longitude = lastKnownLocation.getLongitude();
+                String latLongMsg = "Latitude: " + latitude + ", Longitude: " + longitude;
+                Toast.makeText(this, latLongMsg, Toast.LENGTH_SHORT).show();
             }
         }
     }
+}
 }
